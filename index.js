@@ -1,5 +1,7 @@
 const puppeteer = require('puppeteer');
+const dotenv = require('dotenv')
 
+dotenv.load()
 
 
 function getUnconnectedTokenPass() {
@@ -7,10 +9,10 @@ function getUnconnectedTokenPass() {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
 
-        await page.authenticate({username: 'mycanal', password: 'myc@n@l'})
-        const t = await page.goto('https://dev.mycanal.fr/');
-        const y = await page.cookies()
-        const unconnectedTokenPass = y.find((elem) => {
+        await page.authenticate({username: process.env.USERNAME, password: process.env.PASSWORD})
+         await page.goto('https://dev.mycanal.fr/');
+        const cookies = await page.cookies()
+        const unconnectedTokenPass = cookies.find((elem) => {
             if (elem.name === 's_pass_token') {
                 return elem.value
             }
@@ -18,12 +20,12 @@ function getUnconnectedTokenPass() {
 
         await browser.close();
 
-        return unconnectedTokenPass.value
+        return unconnectedTokenPass
     })();
 }
 
 getUnconnectedTokenPass()
-.then((res) => console.log(res))
+.then((res) => console.log(res.value))
 .catch((err) => {
     throw err
 })

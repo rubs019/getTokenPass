@@ -1,0 +1,12 @@
+{
+  "name": "getTokenPass",
+  "version": "0.1.0",
+  "description": "Get your tokenPass, now !",
+  "main": "index.js",
+  "repository": "https://github.com/rubs019/getTokenPass",
+  "author": "Rubz & Sufiane",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^1.4.0"
+  }
+}

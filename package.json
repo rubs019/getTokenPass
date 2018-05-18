@@ -9,5 +9,8 @@
   "dependencies": {
     "dotenv": "^5.0.1",
     "puppeteer": "^1.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1"
   }
 }
